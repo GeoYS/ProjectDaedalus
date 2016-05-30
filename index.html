@@ -21,15 +21,6 @@
 		firebase.auth().signInAnonymously().catch(function(error) {
 			alert("ERROR IN AUTHENTICATION!!!");
 		});
-		firebase.database().ref('game/test').set({
-			title: "Hello World!",
-			author: "Firebase",
-			location: {
-				city: "San Francisco",
-				state: "California",
-				zip: 94103
-			}
-		});
 		var numPlayers = firebase.database().ref('game/lobby/numPlayers').on('value', function(snapshot) {
 			var numPlayers = snapshot.val();
 			$('#helloWorld').html('Number of players: ' + numPlayers);
