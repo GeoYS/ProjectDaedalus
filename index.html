@@ -19,7 +19,7 @@
 	<p id="helloWorld">Hello world</p>
 	<script type="text/javascript">
 		firebase.auth().signInAnonymously().catch(function(error) {
-		}
+		});
 		firebase.database().ref().set({
 			title: "Hello World!",
 			author: "Firebase",
