@@ -1,0 +1,29 @@
+<html>
+
+<header>
+	<script src="jquery-2.2.4.min.js"></script>
+	<script src="knockout-3.4.0.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyDjujhrawjD7SYiQV9axXI31yAySAC_Zfw",
+		authDomain: "project-828640652417633159.firebaseapp.com",
+		databaseURL: "https://project-828640652417633159.firebaseio.com",
+		storageBucket: "",
+	  };
+	  firebase.initializeApp(config);
+	</script>
+</header>
+<body>
+	<p id="helloWorld">Hello world</p>
+	<script type="text/javascript">
+		function update() {
+			var numPlayers = firebase.database().ref('game/lobby/numPlayers').value();
+			$("#helloWorld").html("Number of players: " + numPlayers);
+		}
+		window.setInterval(update, 1000);
+	</script>
+</body>
+
+</html>
