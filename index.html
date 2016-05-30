@@ -19,8 +19,9 @@
 	<p id="helloWorld">Hello world</p>
 	<script type="text/javascript">
 		firebase.auth().signInAnonymously().catch(function(error) {
+			alert("ERROR IN AUTHENTICATION!!!");
 		});
-		firebase.database().ref().set({
+		firebase.database().ref('game/test').set({
 			title: "Hello World!",
 			author: "Firebase",
 			location: {
