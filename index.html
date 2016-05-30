@@ -8,7 +8,7 @@
 	  // Initialize Firebase
 	  var config = {
 		apiKey: "AIzaSyDjujhrawjD7SYiQV9axXI31yAySAC_Zfw",
-		authDomain: "geoys.github.io",
+		authDomain: "project-828640652417633159.firebaseapp.com",
 		databaseURL: "https://project-828640652417633159.firebaseio.com",
 		storageBucket: "",
 	  };
@@ -18,6 +18,8 @@
 <body>
 	<p id="helloWorld">Hello world</p>
 	<script type="text/javascript">
+		firebase.auth().signInAnonymously().catch(function(error) {
+		}
 		firebase.database().ref().set({
 			title: "Hello World!",
 			author: "Firebase",
