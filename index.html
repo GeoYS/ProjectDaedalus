@@ -18,7 +18,7 @@
 <body>
 	<p id="helloWorld">Hello world</p>
 	<script type="text/javascript">
-	myFirebaseRef.set({
+	firebase.database().ref('game').set({
   title: "Hello World!",
   author: "Firebase",
   location: {
