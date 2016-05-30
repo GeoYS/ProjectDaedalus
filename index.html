@@ -18,13 +18,10 @@
 <body>
 	<p id="helloWorld">Hello world</p>
 	<script type="text/javascript">
-		function update() {
-			var numPlayers = firebase.database().ref('game/lobby/numPlayers').on('value', function(snapshot) {
-				var numPlayers = snapshot.val();
-				$("#helloWorld").html("Number of players: " + numPlayers);
-			});
-		}
-		window.setInterval(update, 1000);
+		var numPlayers = firebase.database().ref('game/lobby/numPlayers').on('value', function(snapshot) {
+			var numPlayers = snapshot.val();
+			$("#helloWorld").html("Number of players: " + numPlayers);
+		});
 	</script>
 </body>
 
