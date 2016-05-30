@@ -18,15 +18,15 @@
 <body>
 	<p id="helloWorld">Hello world</p>
 	<script type="text/javascript">
-	firebase.database().ref('game').set({
-  title: "Hello World!",
-  author: "Firebase",
-  location: {
-    city: "San Francisco",
-    state: "California",
-    zip: 94103
-  }
-});
+		firebase.database().ref('').set({
+			title: "Hello World!",
+			author: "Firebase",
+			location: {
+				city: "San Francisco",
+				state: "California",
+				zip: 94103
+			}
+		});
 		var numPlayers = firebase.database().ref('game/lobby/numPlayers').on('value', function(snapshot) {
 			var numPlayers = snapshot.val();
 			$('#helloWorld').html('Number of players: ' + numPlayers);
