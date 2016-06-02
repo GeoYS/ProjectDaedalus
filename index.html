@@ -29,8 +29,8 @@
 		});
 		
 		function join() {
-			var numPlayers = firebase.database().ref('game/lobby/request/' + $('#name').value()).set({
-				name: $('#name').value()
+			var numPlayers = firebase.database().ref('game/lobby/request/' + $('#name').val()).set({
+				name: $('#name').val()
 			})
 		}
 	</script>
