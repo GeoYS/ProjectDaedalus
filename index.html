@@ -17,6 +17,8 @@
 </header>
 <body>
 	<p id="helloWorld">Hello world</p>
+	<input type="text" id="name"></input>
+	<input type="button" onclick="join()">Join</input>
 	<script type="text/javascript">
 		firebase.auth().signInAnonymously().catch(function(error) {
 			alert("ERROR IN AUTHENTICATION!!!");
@@ -25,6 +27,12 @@
 			var numPlayers = snapshot.val();
 			$('#helloWorld').html('Number of players: ' + numPlayers);
 		});
+		
+		function join() {
+			var numPlayers = firebase.database().ref('game/lobby/request/' + $('#name').value()).set({
+				name: $('#name').value()
+			})
+		}
 	</script>
 </body>
 
