@@ -16,16 +16,22 @@
 	</script>
 </header>
 <body>
-	<p id="helloWorld">Hello world</p>
+	<p id="numPlayers">Number of players:</p>
+	<p id="playersInLobby">Players in lobby: </p>
 	<input type="text" id="name"></input>
-	<input type="button" onclick="join()">Join</input>
+	<input type="button" onclick="join()" value="Join">
 	<script type="text/javascript">
 		firebase.auth().signInAnonymously().catch(function(error) {
 			alert("ERROR IN AUTHENTICATION!!!");
 		});
 		var numPlayers = firebase.database().ref('game/lobby/numPlayers').on('value', function(snapshot) {
 			var numPlayers = snapshot.val();
-			$('#helloWorld').html('Number of players: ' + numPlayers);
+			$('#numPlayers').html('Number of players: ' + numPlayers);
+		});
+		
+		var playersInLobby = firebase.database().ref('game/lobby/players').on('child_added', function(snapshot) {
+			var newPlayer = snapshot.val();
+			$('#playersInLobby').html().append(' ' + newPlayer.name);
 		});
 		
 		function join() {
