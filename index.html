@@ -31,7 +31,7 @@
 		
 		var playersInLobby = firebase.database().ref('game/lobby/players').on('child_added', function(snapshot) {
 			var newPlayer = snapshot.val();
-			$('#playersInLobby').html().append(' ' + newPlayer.name);
+			$('#playersInLobby').append(' ' + newPlayer.name);
 		});
 		
 		function join() {
