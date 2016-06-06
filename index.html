@@ -37,7 +37,8 @@
 		function join() {
 			var numPlayers = firebase.database().ref('game/lobby/request/' + $('#name').val()).set({
 				name: $('#name').val()
-			})
+			});
+			$('#name').val('');
 		}
 	</script>
 </body>
