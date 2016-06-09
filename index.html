@@ -16,30 +16,45 @@
 	</script>
 </header>
 <body>
-	<p id="numPlayers">Number of players:</p>
-	<p id="playersInLobby">Players in lobby: </p>
-	<input type="text" id="name"></input>
-	<input type="button" onclick="join()" value="Join">
+	<div id="main" style="overflow: hidden">
+		<div id="map" style="z-index: -1; position: absolute">	
+			<p id="mapDimensions"></p>
+		</div>
+		<p id="numPlayers">Number of players:</p>
+		<p id="playersInLobby">Players in lobby: </p>
+		<input type="text" id="name"></input>
+		<input type="button" onclick="join()" value="Join">
+	</div>
 	<script type="text/javascript">
+		var database = firebase.database();
+	
 		firebase.auth().signInAnonymously().catch(function(error) {
 			alert("ERROR IN AUTHENTICATION!!!");
 		});
-		var numPlayers = firebase.database().ref('game/lobby/numPlayers').on('value', function(snapshot) {
+		var numPlayers = database.ref('game/lobby/numPlayers').on('value', function(snapshot) {
 			var numPlayers = snapshot.val();
 			$('#numPlayers').html('Number of players: ' + numPlayers);
 		});
 		
-		var playersInLobby = firebase.database().ref('game/lobby/players').on('child_added', function(snapshot) {
+		var playersInLobby = database.ref('game/lobby/players').on('child_added', function(snapshot) {
 			var newPlayer = snapshot.val();
 			$('#playersInLobby').append(' ' + newPlayer.name);
 		});
 		
 		function join() {
-			var numPlayers = firebase.database().ref('game/lobby/request/' + $('#name').val()).set({
+			var numPlayers = database.ref('game/lobby/request/' + $('#name').val()).set({
 				name: $('#name').val()
 			});
 			$('#name').val('');
 		}
+		
+		database.ref('game/world/map').on('value', function(snapshot) {
+			var map = snapshot.val();
+			var tilesWide = map['tilesWide'];
+			var tilesHigh = map['tilesHigh'];
+			
+			$('#mapDimensions').html('Map dimensions: ' + tilesWide + 'x' + tilesHigh);
+		});
 	</script>
 </body>
 
