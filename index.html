@@ -102,13 +102,14 @@
 		.mousemove(function(event) {
 			if(isDragging) {
 				var map = $('#map');
-				var oldX = map.left();
-				var oldY = map.top();
+				var oldOffset = map.offset();
 				var deltaX = event.pageX - lastX;
 				var deltaY = event.pageY - lastY;
 				
-				map.left(oldX + deltaX);
-				map.top(oldY + deltaY);
+				map.offset({
+					top: oldOffset['top'] + deltaY,
+					left: oldOffset['left'] + deltaX
+				});
 				
 				lastX = event.pageX;			
 				lastY = event.pageY;
