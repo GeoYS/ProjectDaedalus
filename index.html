@@ -97,6 +97,7 @@
 			lastX = event.screenX;
 			lastY = event.screenY;
 			isDragging = true;
+			alert('mouse down');
 		})
 		.mousemove(function(event) {
 			if(isDragging) {
@@ -117,6 +118,7 @@
 		})
 		.mousedown(function(event) {
 			isDragging = false;
+			alert('mouse up');
 		});
 	</script>
 </body>
