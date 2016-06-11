@@ -14,13 +14,13 @@
 	  };
 	  firebase.initializeApp(config);
 	</script>
+	<style>
 	.grassland {
 		background-color: lightgreen;
 	}
 	.water {
 		background-color: lightblue;
 	}
-	<style>
 	</style>
 </header>
 <body>
@@ -64,9 +64,9 @@
 			
 			$('#mapDimensions').html('Map dimensions: ' + tilesWide + 'x' + tilesHigh);
 			
-			for(int y = 0; y < tilesHigh; y ++) {
+			for(var y = 0; y < tilesHigh; y ++) {
 				$('#map').append('<div id=\'row' + y + '\'></div>');
-				for(int x = 0; x < tilesWide; x ++) {
+				for(var x = 0; x < tilesWide; x ++) {
 				var coord = x + ',' + y;
 					$('#row' + y).append('<div class=\'' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
 				}
