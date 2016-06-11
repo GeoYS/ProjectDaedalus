@@ -88,6 +88,27 @@
 				}
 			}
 		});
+		
+		var lastX, lastY;
+		
+		$('#map').ondragenter(function(event) {
+			lastX = event.screenX;
+			lastY = event.screenY;
+		});
+		
+		$('#map').ondrag(function(event) {
+			var map = $(this);
+			var oldX = map.left();
+			var oldY = map.top();
+			var deltaX = event.screenX - lastX;
+			var deltaY = event.screenY - lastY;
+			
+			map.left(oldX + deltaX);
+			map.top(oldY + deltaY);
+			
+			lastX = event.screenX;			
+			lastY = event.screenY;
+		});
 	</script>
 </body>
 
