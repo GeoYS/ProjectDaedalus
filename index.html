@@ -97,7 +97,6 @@
 			lastX = event.pageX;
 			lastY = event.pageY;
 			isDragging = true;
-			//alert('mouse down');
 		})
 		.mousemove(function(event) {
 			if(isDragging) {
@@ -105,6 +104,20 @@
 				var oldOffset = map.offset();
 				var deltaX = event.pageX - lastX;
 				var deltaY = event.pageY - lastY;
+				
+				if(deltaX < -300) {
+					deltaX = -300;
+				}
+				if(deltaX > 3300) {
+					deltaX = 3300;
+				}
+				
+				if(deltaY < -300) {
+					deltaY = -300;
+				}
+				if(deltaY > 3300) {
+					deltaY = 3300;
+				}
 				
 				map.offset({
 					top: oldOffset['top'] + deltaY,
@@ -119,7 +132,6 @@
 		})
 		.mouseup(function(event) {
 			isDragging = false;
-			alert('mouse up');
 		});
 	</script>
 </body>
