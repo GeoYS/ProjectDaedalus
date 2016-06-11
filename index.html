@@ -105,18 +105,18 @@
 				var newOffsetX = oldOffset['left'] + event.pageX - lastX;
 				var newOffsetY = oldOffset['top'] + event.pageY - lastY;
 				
-				if(newOffsetX < -300) {
-					newOffsetX = -300;
+				if(newOffsetX > 300) {
+					newOffsetX = 300;
 				}
-				if(newOffsetX > 3300) {
-					newOffsetX = 3300;
+				if(newOffsetX < -3300) {
+					newOffsetX = -3300;
 				}
 				
-				if(newOffsetY < -300) {
-					newOffsetY = -300;
+				if(newOffsetY > 300) {
+					newOffsetY = 300;
 				}
-				if(newOffsetY > 3300) {
-					newOffsetY = 3300;
+				if(newOffsetY < -3300) {
+					newOffsetY = -3300;
 				}
 				
 				map.offset({
