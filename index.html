@@ -100,28 +100,28 @@
 		})
 		.mousemove(function(event) {
 			if(isDragging) {
-				var map = $('#map');
+				var map = $('#map')
 				var oldOffset = map.offset();
-				var deltaX = event.pageX - lastX;
-				var deltaY = event.pageY - lastY;
+				var newOffsetX = oldOffset['left'] + event.pageX - lastX;
+				var newOffsetY = ldOffset['top'] + event.pageY - lastY;
 				
-				if(deltaX < -300) {
-					deltaX = -300;
+				if(newOffsetX < -300) {
+					newOffsetX = -300;
 				}
-				if(deltaX > 3300) {
-					deltaX = 3300;
+				if(newOffsetX > 3300) {
+					newOffsetX = 3300;
 				}
 				
-				if(deltaY < -300) {
-					deltaY = -300;
+				if(newOffsetY < -300) {
+					newOffsetY = -300;
 				}
-				if(deltaY > 3300) {
-					deltaY = 3300;
+				if(newOffsetY) {
+					newOffsetY = 3300;
 				}
 				
 				map.offset({
-					top: oldOffset['top'] + deltaY,
-					left: oldOffset['left'] + deltaX
+					top: newOffsetY,
+					left: newOffsetX
 				});
 				
 				lastX = event.pageX;			
