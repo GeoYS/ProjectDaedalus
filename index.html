@@ -15,6 +15,10 @@
 	  firebase.initializeApp(config);
 	</script>
 	<style>
+	.tile {
+		width: 100px;
+		height: 100px;
+	}
 	.grassland {
 		background-color: lightgreen;
 	}
@@ -68,7 +72,9 @@
 				$('#map').append('<div id=\'row' + y + '\'></div>');
 				for(var x = 0; x < tilesWide; x ++) {
 				var coord = x + ',' + y;
-					$('#row' + y).append('<div class=\'' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
+					$('#row' + y)
+						.append(
+							'<div class=\'tile' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
 				}
 			}
 		});
