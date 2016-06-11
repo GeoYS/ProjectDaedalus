@@ -101,7 +101,7 @@
 		})
 		.mousemove(function(event) {
 			if(isDragging) {
-				var map = $(this);
+				var map = $('#map');
 				var oldX = map.left();
 				var oldY = map.top();
 				var deltaX = event.pageX - lastX;
