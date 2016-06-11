@@ -14,11 +14,19 @@
 	  };
 	  firebase.initializeApp(config);
 	</script>
+	.grassland {
+		background-color: lightgreen;
+	}
+	.water {
+		background-color: lightblue;
+	}
+	<style>
+	</style>
 </header>
 <body>
 	<div id="main" style="overflow: hidden">
+		<p id="mapDimensions"></p>
 		<div id="map" style="z-index: -1; position: absolute; left: 100px; top: 100px;">	
-			<p id="mapDimensions"></p>
 		</div>
 		<p id="numPlayers">Number of players:</p>
 		<p id="playersInLobby">Players in lobby: </p>
@@ -52,8 +60,17 @@
 			var map = snapshot.val();
 			var tilesWide = map['tilesWide'];
 			var tilesHigh = map['tilesHigh'];
+			var mapDiv = $('#map');
 			
 			$('#mapDimensions').html('Map dimensions: ' + tilesWide + 'x' + tilesHigh);
+			
+			for(int y = 0; y < tilesHigh; y ++) {
+				$('#map').append('<div id=\'row' + y + '\'></div>');
+				for(int x = 0; x < tilesWide; x ++) {
+				var coord = x + ',' + y;
+					$('#row' + y).append('<div class=\'' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
+				}
+			}
 		});
 	</script>
 </body>
