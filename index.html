@@ -30,7 +30,7 @@
 <body>
 	<div id="main" style="overflow: hidden">
 		<p id="mapDimensions"></p>
-		<div id="map" style="z-index: -1; position: absolute; left: 100px; top: 100px;">	
+		<div id="map" style="z-index: -1; position: absolute;">	
 		</div>
 		<p id="numPlayers">Number of players:</p>
 		<p id="playersInLobby">Players in lobby: </p>
@@ -74,7 +74,7 @@
 				var coord = x + ',' + y;
 					$('#row' + y)
 						.append(
-							'<div class=\'tile' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
+							'<div class=\'tile ' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
 				}
 			}
 		});
