@@ -15,9 +15,13 @@
 	  firebase.initializeApp(config);
 	</script>
 	<style>
+	html {
+		overflow-y: hidden; 
+	}
 	.tile {
 		width: 100px;
 		height: 100px;
+		float: left;
 	}
 	.grassland {
 		background-color: lightgreen;
@@ -69,10 +73,13 @@
 			$('#mapDimensions').html('Map dimensions: ' + tilesWide + 'x' + tilesHigh);
 			
 			for(var y = 0; y < tilesHigh; y ++) {
-				$('#map').append('<div id=\'row' + y + '\'></div>');
+				var row = 'row' + y;
+				$('#map').append('<div id=\'' + row + '\'></div>');
+				$('#' + row).width(tilesWide * 100);
+				
 				for(var x = 0; x < tilesWide; x ++) {
-				var coord = x + ',' + y;
-					$('#row' + y)
+					var coord = x + ',' + y;
+					$('#' + row)
 						.append(
 							'<div class=\'tile ' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
 				}
