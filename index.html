@@ -103,7 +103,7 @@
 				var map = $('#map')
 				var oldOffset = map.offset();
 				var newOffsetX = oldOffset['left'] + event.pageX - lastX;
-				var newOffsetY = ldOffset['top'] + event.pageY - lastY;
+				var newOffsetY = oldOffset['top'] + event.pageY - lastY;
 				
 				if(newOffsetX < -300) {
 					newOffsetX = -300;
