@@ -18,6 +18,9 @@
 	html {
 		overflow-y: hidden; 
 	}
+	body {
+		margin: 0;
+	}
 	.tile {
 		width: 100px;
 		height: 100px;
@@ -33,9 +36,9 @@
 </header>
 <body>
 	<div id="main" style="overflow: hidden">
-		<p id="mapDimensions"></p>
 		<div id="map" style="z-index: -1; position: absolute;">	
 		</div>
+		<p id="mapDimensions"></p>
 		<p id="numPlayers">Number of players:</p>
 		<p id="playersInLobby">Players in lobby: </p>
 		<input type="text" id="name"></input>
