@@ -108,15 +108,15 @@
 				if(newOffsetX > 300) {
 					newOffsetX = 300;
 				}
-				if(newOffsetX < -3300) {
-					newOffsetX = -3300;
+				if(newOffsetX < -3300 + $(window).width()) {
+					newOffsetX = -3300  + $(window).width();
 				}
 				
 				if(newOffsetY > 300) {
 					newOffsetY = 300;
 				}
-				if(newOffsetY < -3300) {
-					newOffsetY = -3300;
+				if(newOffsetY < -3300 + $(window).height()) {
+					newOffsetY = -3300 + $(window).height();
 				}
 				
 				map.offset({
