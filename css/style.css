@@ -4,6 +4,9 @@ html {
 body {
 	margin: 0;
 }
+#container {
+	height: 100%;
+}
 .tile {
 	width: 100px;
 	height: 100px;
