@@ -32,7 +32,11 @@
 			alert("ERROR IN AUTHENTICATION!!!");
 		});
 		
-		$('#container').load('login.html');
+		var loadPage = function (page) {			
+			$('#container').load(page);
+		};
+		
+		loadPage('login.html');		
 	</script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
