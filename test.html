@@ -8,11 +8,6 @@
 		<input type="button" onclick="join()" value="Join">
 </div>
 <script type="text/javascript">
-	var database = firebase.database();
-
-	firebase.auth().signInAnonymously().catch(function(error) {
-		alert("ERROR IN AUTHENTICATION!!!");
-	});
 	var numPlayers = database.ref('game/lobby/numPlayers').on('value', function(snapshot) {
 		var numPlayers = snapshot.val();
 		$('#numPlayers').html('Number of players: ' + numPlayers);

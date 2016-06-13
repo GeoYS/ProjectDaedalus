@@ -21,11 +21,17 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<div id="content">
+	<div id="container">
 	</div>
 	
-	<script>
-		$('#content').load('test.html');
+	<script>	
+		var database = firebase.database();
+
+		firebase.auth().signInAnonymously().catch(function(error) {
+			alert("ERROR IN AUTHENTICATION!!!");
+		});
+		
+		$('#container').load('login.html');
 	</script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
