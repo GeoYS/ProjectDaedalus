@@ -1,7 +1,6 @@
 <div id="loginContainer">
 	<div class="form-signin">
-		<h2 class="form-signin-heading">Enter a player name to join the lobby</h2>
-		<label for="inputPlayerName" class="sr-only">Player Name</label>
+		<h2 class="form-signin-heading">Enter a player name</h2>
 		<input type="text" id="inputPlayerName" class="form-control" placeholder="Player Name" required autofocus>
 		<button class="btn btn-lg btn-primary btn-block" id="join">Join</button>
 	</div>
@@ -11,7 +10,13 @@
 	var secret;
 
 	$('#join').click(function(clickEvent) {
-		alert('attempting to join...');
+		if(!$('#inputPlayerName').val()) {
+			alert('Please enter a name.');
+			return;
+		}
+		
+		alert('Attempting to join...');
+		
 		var tplayerName = $('#inputPlayerName').val();
 		var tsecret = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 				var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -37,6 +42,10 @@
 		
 		database.ref('game/lobby/players/' + tplayerName).on('value', function(snapshot) {
 			var player = snapshot.val();
+			
+			if(!player) {
+				return;
+			}
 			
 			if(player.secretCheck == tsecret.substring(tsecret.length - 6)) {
 				clearInterval(tryHeartBeat);
