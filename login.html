@@ -56,6 +56,7 @@
 				
 				database.ref('game/lobby/players/' + tplayerName + 'heartBeat').on('value', function(snapshot) {
 					var heartBeat = snapshot.val();
+					alert("heartbeat needed to keep alive!!!!!!!");
 					if(heartBeat) {
 						database.ref('game/input/lobby/heartbeat/' + tplayerName).set({
 							name: tplayerName,
