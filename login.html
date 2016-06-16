@@ -35,10 +35,10 @@
 			loadPage('login.html');		
 		}, 5500);
 		
-		database.ref('game/lobby/players/' + tplayerName).on('value', function(	snapshot) {
+		database.ref('game/lobby/players/' + tplayerName).on('value', function(snapshot) {
 			var player = snapshot.val();
 			
-			if(player.secretCheck == tsecret.substring(tsecret.length - 6) {
+			if(player.secretCheck == tsecret.substring(tsecret.length - 6)) {
 				clearInterval(tryHeartBeat);
 				clearTimeout(loginTimeout);		
 
