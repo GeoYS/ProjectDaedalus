@@ -1,16 +1,17 @@
 <div id="loginContainer">
-	<form class="form-signin">
+	<div class="form-signin">
 		<h2 class="form-signin-heading">Enter a player name to join the lobby</h2>
 		<label for="inputPlayerName" class="sr-only">Player Name</label>
 		<input type="text" id="inputPlayerName" class="form-control" placeholder="Player Name" required autofocus>
-		<button class="btn btn-lg btn-primary btn-block" id="formSubmit">Join</button>
-	</form>
+		<button class="btn btn-lg btn-primary btn-block" id="join">Join</button>
+	</div>
 </div>
 <script>
 	var playerName;
 	var secret;
 
-	$('#formSubmit').click(function(clickEvent) {
+	$('#join').click(function(clickEvent) {
+		alert('attempting to join...');
 		var tplayerName = $('#inputPlayerName').val();
 		var tsecret = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 				var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
