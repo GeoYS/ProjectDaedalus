@@ -39,7 +39,7 @@
 		};
 		
 		var keepAlive = function () {			
-			database.ref('game/lobby/players/' + tplayerName + 'heartBeat').on('value', function(snapshot) {
+			database.ref('game/lobby/players/' + playerName + 'heartBeat').on('value', function(snapshot) {
 				var heartBeat = snapshot.val();
 				if(heartBeat == 'true') {
 					alert("heartbeat needed to keep alive!!!!!!!");
@@ -49,7 +49,7 @@
 					});
 				}
 			});
-			database.ref('game/lobby/players/' + tplayerName + 'isActive').on('value', function(snapshot) {
+			database.ref('game/lobby/players/' + playerName + 'isActive').on('value', function(snapshot) {
 				var isActive = snapshot.val();
 				if(!isActive) {
 					loadPage('login.html');		
