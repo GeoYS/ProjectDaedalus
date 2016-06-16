@@ -1,13 +1,67 @@
 <div id="loginContainer">
 	<form class="form-signin">
-		<h2 class="form-signin-heading">Enter a username to join the lobby</h2>
-		<label for="inputUsername" class="sr-only">Username</label>
-		<input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+		<h2 class="form-signin-heading">Enter a player name to join the lobby</h2>
+		<label for="inputPlayerName" class="sr-only">Player Name</label>
+		<input type="text" id="inputPlayerName" class="form-control" placeholder="Player Name" required autofocus>
 		<button class="btn btn-lg btn-primary btn-block" id="formSubmit">Join</button>
 	</form>
 </div>
 <script>
+	var playerName;
+	var secret;
+
 	$('#formSubmit').click(function(clickEvent) {
-		loadPage('test.html');
+		var tplayerName = $('#inputPlayerName').val();
+		var tsecret = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+				var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+				return v.toString(16);
+			});
+	
+		database.ref('game/input/lobby/request/' + tplayerName).set({
+			name: tplayerName
+		});
+		
+		var tryHeartBeat = setInterval(function() {
+			database.ref('game/input/lobby/heartbeat/' + tplayerName).set({
+				name: tplayerName,
+				secret: tsecret
+			});
+		}, 1000);
+	
+		var loginTimeout = setTimeout(function() {
+			alert("This name is currently unavailable. Sorry, try again!");
+			clearInterval(tryHeartBeat);
+			loadPage('login.html');		
+		}, 5500);
+		
+		database.ref('game/lobby/players/' + tplayerName).on('value', function(	snapshot) {
+			var player = snapshot.val();
+			
+			if(player.secretCheck == tsecret.substring(tsecret.length - 6) {
+				clearInterval(tryHeartBeat);
+				clearTimeout(loginTimeout);		
+
+				playerName = tplayerName;
+				secret = tsecret;
+				
+				database.ref('game/lobby/players/' + tplayerName + 'heartBeat').on('value', function(snapshot) {
+					var heartBeat = snapshot.val();
+					if(heartBeat) {
+						database.ref('game/input/lobby/heartbeat/' + tplayerName).set({
+							name: tplayerName,
+							secret: tsecret
+						});
+					}
+				}
+				database.ref('game/lobby/players/' + tplayerName + 'isActive').on('value', function(snapshot) {
+					var isActive = snapshot.val();
+					if(!isActive) {
+						loadPage('login.html');		
+					}
+				}
+				loadPage('test.html');
+			}
+		});
+		
 	});
 </script>

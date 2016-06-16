@@ -1,0 +1,19 @@
+<div id="loginContainer">
+	<h2 id="playerName"></h2>
+	<ul id="playersActive">
+	</ul>
+</div>
+<script type="text/javascript">
+	$('#playerName').html(playerName);
+	
+	database.ref('game/lobby/players').on('value', function(snapshot) {
+		var players = snapshot.val();
+		$('#playersActive').empty();
+		Object.keys(players).forEach(function(key, index){
+			if(players[key].isActive) {
+				var playerli = '<li>' + key + '</li>';
+				$('#playersActive').append(playerli);
+			}
+		});
+	}
+</script>
