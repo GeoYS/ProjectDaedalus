@@ -7,7 +7,7 @@
 	<script src="jquery-2.2.4.min.js"></script>
 	<script src="knockout-3.4.0.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-	<script>
+	<script type="text/javascript">
 	  // Initialize Firebase
 	  var config = {
 		apiKey: "AIzaSyDjujhrawjD7SYiQV9axXI31yAySAC_Zfw",
@@ -17,15 +17,15 @@
 	  };
 	  firebase.initializeApp(config);
 	</script>
-	<link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/login.css" />
 </head>
 <body>
 	<div id="container">
 	</div>
 	
-	<script>	
+	<script type="text/javascript"	
 		var database = firebase.database();
 
 		firebase.auth().signInAnonymously().catch(function(error) {
@@ -40,9 +40,9 @@
 	</script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 
 </html>
