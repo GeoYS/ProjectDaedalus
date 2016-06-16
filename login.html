@@ -54,22 +54,8 @@
 				playerName = tplayerName;
 				secret = tsecret;
 				
-				database.ref('game/lobby/players/' + tplayerName + 'heartBeat').on('value', function(snapshot) {
-					var heartBeat = snapshot.val();
-					alert("heartbeat needed to keep alive!!!!!!!");
-					if(heartBeat) {
-						database.ref('game/input/lobby/heartbeat/' + tplayerName).set({
-							name: tplayerName,
-							secret: tsecret
-						});
-					}
-				});
-				database.ref('game/lobby/players/' + tplayerName + 'isActive').on('value', function(snapshot) {
-					var isActive = snapshot.val();
-					if(!isActive) {
-						loadPage('login.html');		
-					}
-				});
+				keepAlive();
+				
 				loadPage('lobby.html');
 			}
 		});
