@@ -44,8 +44,8 @@
 				if(heartBeat == 'true') {
 					alert("heartbeat needed to keep alive!!!!!!!");
 					database.ref('game/input/lobby/heartbeat/' + tplayerName).set({
-						name: tplayerName,
-						secret: tsecret
+						name: playerName,
+						secret: secret
 					});
 				}
 			});
