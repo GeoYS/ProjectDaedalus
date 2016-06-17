@@ -29,6 +29,11 @@
 	</div>
 	
 	<script type="text/javascript">	
+		// GLOBAL VARIABLES
+		var lobbyEntered = false;
+	</script>
+	
+	<script type="text/javascript">	
 		var database = firebase.database();
 
 		firebase.auth().signInAnonymously().catch(function(error) {

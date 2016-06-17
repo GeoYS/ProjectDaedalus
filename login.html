@@ -65,7 +65,10 @@
 					}
 				});
 				
-				loadPage('lobby.html');
+				if(!lobbyEntered) {
+					lobbyEntered = true;
+					loadPage('lobby.html');
+				}
 			}
 		});
 		
