@@ -38,12 +38,10 @@
 			$('#container').load(page);
 		};
 		
-		var keepAlive = function () {	
-			alert("heartbeat needed to keep alive!!!!!!!");		
-			database.ref('game/lobby/players/' + playerName + 'heartBeat').on('value', function(snapshot) {
+		var keepAlive = function () {		
+			database.ref('game/lobby/players/' + playerName + '/heartBeat').on('value', function(snapshot) {
 				var heartBeat = snapshot.val();
 				if(heartBeat == 'true') {
-					alert("heartbeat needed to keep alive!!!!!!!");
 					database.ref('game/input/lobby/heartbeat/' + tplayerName).set({
 						name: playerName,
 						secret: secret
