@@ -38,24 +38,6 @@
 			$('#container').load(page);
 		};
 		
-		var keepAlive = function () {		
-			database.ref('game/lobby/players/' + playerName + '/heartBeat').on('value', function(snapshot) {
-				var heartBeat = snapshot.val();
-				if(heartBeat == 'true') {
-					database.ref('game/input/lobby/heartbeat/' + tplayerName).set({
-						name: playerName,
-						secret: secret
-					});
-				}
-			});
-			database.ref('game/lobby/players/' + playerName + 'isActive').on('value', function(snapshot) {
-				var isActive = snapshot.val();
-				if(!isActive) {
-					loadPage('login.html');		
-				}
-			});
-		};
-		
 		loadPage('login.html');		
 	</script>
 
