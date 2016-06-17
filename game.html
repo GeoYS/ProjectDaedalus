@@ -31,43 +31,49 @@
 	
 	$(document)
 	.mousedown(function(event) {
-		lastX = event.pageX;
-		lastY = event.pageY;
-		isDragging = true;
-	})
-	.mousemove(function(event) {
-		if(isDragging) {
-			var map = $('#map')
-			var oldOffset = map.offset();
-			var newOffsetX = oldOffset['left'] + event.pageX - lastX;
-			var newOffsetY = oldOffset['top'] + event.pageY - lastY;
-			
-			if(newOffsetX > 300) {
-				newOffsetX = 300;
-			}
-			if(newOffsetX < -3300 + $(window).width()) {
-				newOffsetX = -3300  + $(window).width();
-			}
-			
-			if(newOffsetY > 300) {
-				newOffsetY = 300;
-			}
-			if(newOffsetY < -3300 + $(window).height()) {
-				newOffsetY = -3300 + $(window).height();
-			}
-			
-			map.offset({
-				top: newOffsetY,
-				left: newOffsetX
-			});
-			
-			lastX = event.pageX;			
+		if(event.which == 2) {
+			lastX = event.pageX;
 			lastY = event.pageY;
-			
 			isDragging = true;
 		}
 	})
+	.mousemove(function(event) {
+		if(event.which == 2) {
+			if(isDragging) {
+				var map = $('#map')
+				var oldOffset = map.offset();
+				var newOffsetX = oldOffset['left'] + event.pageX - lastX;
+				var newOffsetY = oldOffset['top'] + event.pageY - lastY;
+				
+				if(newOffsetX > 300) {
+					newOffsetX = 300;
+				}
+				if(newOffsetX < -3300 + $(window).width()) {
+					newOffsetX = -3300  + $(window).width();
+				}
+				
+				if(newOffsetY > 300) {
+					newOffsetY = 300;
+				}
+				if(newOffsetY < -3300 + $(window).height()) {
+					newOffsetY = -3300 + $(window).height();
+				}
+				
+				map.offset({
+					top: newOffsetY,
+					left: newOffsetX
+				});
+				
+				lastX = event.pageX;			
+				lastY = event.pageY;
+				
+				isDragging = true;
+			}
+		}
+	})
 	.mouseup(function(event) {
-		isDragging = false;
+		if(event.which == 2) {
+			isDragging = false;
+		}
 	});
 </script>
