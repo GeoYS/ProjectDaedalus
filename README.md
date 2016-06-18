@@ -1,2 +1,2 @@
 # ProjectDaedalus
-A multiplayer online RTS that is a cross of the standard MMORTS and Age of Empires.
+A multiplayer online RTS that combines aspects of standard MMORTS and the excitement of Age of Empires.
