@@ -8,8 +8,15 @@ namespace ProjectDaedalus
 {
     public class Player
     {
-        List<Guid> playerEntities;
-        List<Guid> playerTechnologies;
-        HashSet<string> visibleTiles;
+        public string name { get; set; }
+        public List<Guid> playerTechnologies { get; set; }
+        public HashSet<string> visibleTiles { get; set; }
+
+        public Player(string name)
+        {
+            this.name = name;
+            playerTechnologies = new List<Guid>();
+            visibleTiles = new HashSet<string>();
+        }
     }
 }

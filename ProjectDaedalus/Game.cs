@@ -17,8 +17,11 @@ namespace ProjectDaedalus
         public const string LOBBY = "game/lobby";
         public const string INPUT_LOBBY_REQUEST = "game/input/lobby/request";
         public const string INPUT_LOBBY_HEARTBEAT = "game/input/lobby/heartbeat";
+        public const string INPUT_LOBBY_STARTGAME= "game/input/lobby/startgame";
 
         public Lobby lobby { get; set; }
+
+        public World world { get; set; }
 
         public void Start()
         {
@@ -53,40 +56,15 @@ namespace ProjectDaedalus
 
             lobby = new Lobby();
 
-            FirebaseResponse responseSetMapDim =
+            FirebaseResponse responseInitLobby =
                 client.Set<Lobby>("game/lobby", lobby);
-
-            /*FirebaseResponse responseDeleteWorldMap =
-                client.Delete("game/world/map");
-
-            int tilesHigh = 30;
-            int tilesWide = 30;
-
-            World.Map map = new World.Map(tilesHigh, tilesWide);
-
-            Random rnd = new Random();
-
-            for (int i = 0; i < tilesHigh; i ++)
-            {
-                for (int j = 0; j < tilesWide; j ++)
-                {
-                    string key = string.Format("{0},{1}", i, j);
-                    Entity tile = new Entity();
-
-                    tile["tileType"] = rnd.NextDouble() > 0.5 ? "grassland" : "water";
-                    map.tiles[key] = tile;                    
-                }
-            }
-
-            FirebaseResponse responseSetMapDim =
-                client.Set<World.Map>("game/world/map", map);*/
         }
 
         private void Loop(IFirebaseClient client, long delta)
         {
             // handle new users
-            FirebaseResponse response = client.Get(INPUT_LOBBY_REQUEST);
-            var lobbyRequests = JsonConvert.DeserializeObject<Dictionary<string, LobbyRequest>>(response.Body);
+            FirebaseResponse responseLobbyRequests = client.Get(INPUT_LOBBY_REQUEST);
+            var lobbyRequests = JsonConvert.DeserializeObject<Dictionary<string, LobbyRequest>>(responseLobbyRequests.Body);
             if (lobbyRequests != null)
             {
                 foreach (var key in lobbyRequests.Keys)
@@ -151,7 +129,19 @@ namespace ProjectDaedalus
                 }
             }
 
-            FirebaseResponse responseUpdateNP = client.Update<Lobby>(LOBBY, lobby);
+            client.Update<Lobby>(LOBBY, lobby);
+
+            // start game
+            FirebaseResponse startGameResponse = client.Get(INPUT_LOBBY_STARTGAME);
+            var gameConfig = JsonConvert.DeserializeObject<Dictionary<string, string>>(startGameResponse.Body);
+            if (gameConfig != null && this.world == null)
+            {
+                this.world = World.GenerateWorld(lobby.players.Keys.ToList(), 30);
+                Repo.QueueUpdate(() => client.Set<World.Map>("game/world/map", world.map));
+                client.Delete(INPUT_LOBBY_STARTGAME);
+            }
+
+            Repo.PerformAllUpdates();
         }
 
         public class Lobby

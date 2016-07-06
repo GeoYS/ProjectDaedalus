@@ -12,6 +12,8 @@ namespace ProjectDaedalus
 
         public Guid id { get; }
 
+        public Player owningPlayer { get; }
+
         private List<Entity> toSpawn;
 
         private bool remove;
@@ -36,7 +38,7 @@ namespace ProjectDaedalus
         {
             get { return properties[key]; }
             set { properties[key] = value;
-                Repo.Track(Tuple.Create(id, key, value.ToString()));
+                //Repo.Track(Tuple.Create(id, key, value.ToString()));
             }
         }
 
