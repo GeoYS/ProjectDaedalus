@@ -4,8 +4,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="jquery-2.2.4.min.js" type="text/javascript"></script>
+	<!--<script src="jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="jquery-ui-1.11.4/jquery-ui.min.js" type="text/javascript"></script>-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js" type="text/javascript"></script>
+	
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	
 	<script src="knockout-3.4.0.js" type="text/javascript"></script>
+	<script src="util.js" type="text/javascript"></script>
+	<script src="firebasePaths.js" type="text/javascript"></script>
+	
+	<!-- Load View Models -->
+	<script src="gameViewModel.js" type="text/javascript"></script>
+	<script src="areaViewModel.js" type="text/javascript"></script>
+	
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js" type="text/javascript"></script>
 	<script type="text/javascript">
 	  // Initialize Firebase
@@ -21,13 +38,15 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link rel="stylesheet" type="text/css" href="css/lobby.css">
+	<link rel="stylesheet" type="text/css" href="css/game.css">
 	
 	<title>Project Daedalus</title>
 </head>
 <body>
 	<div id="container">
 	</div>
-	
+	<div id="dialog">
+	</div>
 	<script type="text/javascript">	
 		// GLOBAL VARIABLES
 		var lobbyEntered = false;
@@ -40,17 +59,15 @@
 			alert("ERROR IN AUTHENTICATION!!!");
 		});
 		
+		//
+		// Set the content of the page
+		//
 		var loadPage = function (page) {			
 			$('#container').load(page);
 		};
 		
 		loadPage('login.html');		
 	</script>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 
 </html>

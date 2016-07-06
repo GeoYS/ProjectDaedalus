@@ -1,31 +1,29 @@
 <div id="main" style="overflow: hidden">
-		<div id="map" style="z-index: -1; position: absolute;">	
+		<div id="map" style="position: absolute;">	
 		</div>
 		<p id="mapDimensions"></p>
 </div>
 <script type="text/javascript">
-	database.ref('game/world/map').on('value', function(snapshot) {
-		var map = snapshot.val();
-		var tilesWide = map['tilesWide'];
-		var tilesHigh = map['tilesHigh'];
-		var mapDiv = $('#map');
+	initGameViewModel();
+	
+	$(document).on('click', '.tile', function() {
+		var coord = $(this).attr('id');
+		var dialogDiv = $('#dialog');
+		dialogDiv.load('area.html', function() {			
+			var areaDiv = dialogDiv.find('.area');
+			initAreaViewModel(areaDiv, gameViewModel.tileMap[coord], coord);
 		
-		$('#mapDimensions').html('Map dimensions: ' + tilesWide + 'x' + tilesHigh);
-		
-		for(var y = 0; y < tilesHigh; y ++) {
-			var row = 'row' + y;
-			$('#map').append('<div id=\'' + row + '\'></div>');
-			$('#' + row).width(tilesWide * 100);
-			
-			for(var x = 0; x < tilesWide; x ++) {
-				var coord = x + ',' + y;
-				$('#' + row)
-					.append(
-						'<div class=\'tile ' + map['tiles'][coord]['properties']['tileType'] + '\' ' + 'id=\'' + coord + '\'></div>');
-			}
-		}
+			dialogDiv.dialog({
+				title: coord,
+				close: function() {
+					cleanUp(areaDiv);
+					dialogDiv.empty();
+				}
+			});
+		});
 	});
 	
+	// Dragging of map using middle mouse button
 	var lastX, lastY;
 	var isDragging = false;
 	

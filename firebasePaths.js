@@ -1,0 +1,1 @@
+var INPUT_LOBBY_STARTGAME = 'game/input/lobby/startgame';

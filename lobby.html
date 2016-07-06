@@ -18,7 +18,10 @@
 		});
 	});
 	
-	$('#goToGame').click(function() {
+	$('#goToGame').click(function() {	
+		database.ref(INPUT_LOBBY_STARTGAME).set({
+				begin: true
+			});
 		loadPage('game.html');
 	});
 </script>

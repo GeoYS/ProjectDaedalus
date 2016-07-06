@@ -15,7 +15,7 @@
 			return;
 		}
 		
-		alert('Attempting to join...');
+		disable('Joining...', $('#join'));
 		
 		var tplayerName = $('#inputPlayerName').val();
 		var tsecret = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -36,6 +36,7 @@
 	
 		var loginTimeout = setTimeout(function() {
 			alert("This name is currently unavailable. Sorry, try again!");
+			enable('Join', $('#join'));
 			clearInterval(tryHeartBeat);
 			loadPage('login.html');		
 		}, 5500);
