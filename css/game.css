@@ -1,3 +1,15 @@
+.tile {
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+.grassland {
+	background-color: lightgreen;
+}
+.water {
+	background-color: lightblue;
+}
+
 .tile:hover {
   border: 1px solid rgb(255, 2, 2);
 }

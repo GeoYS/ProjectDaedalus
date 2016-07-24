@@ -7,14 +7,3 @@ body {
 #container {
 	height: 100%;
 }
-.tile {
-	width: 100px;
-	height: 100px;
-	float: left;
-}
-.grassland {
-	background-color: lightgreen;
-}
-.water {
-	background-color: lightblue;
-}
