@@ -79,6 +79,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Repo.cs" />
     <Compile Include="Request.cs" />
+    <Compile Include="Units.cs" />
     <Compile Include="Updater.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameStates.cs" />

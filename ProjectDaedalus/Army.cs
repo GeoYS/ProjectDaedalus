@@ -8,24 +8,24 @@ namespace ProjectDaedalus
 {
     public class Army : Entity
     {
-        public Dictionary<string, UnitGroup> units { get; set; }
+        public Dictionary<Units.UnitType, UnitGroup> units { get; set; }
 
         public Army(double x, double y) : base()
         {
-            units = new Dictionary<string, UnitGroup>();
-            this["x"] = x;
-            this["y"] = y;
+            units = new Dictionary<Units.UnitType, UnitGroup>();
+            this["x"] = x.ToString();
+            this["y"] = y.ToString();
         }
 
         public class UnitGroup : Entity
         {
-            public string type { get; set; }
+            public int type { get; set; }
             public int number { get; set; }
             public int tier { get; set; }
 
-            public UnitGroup(string type, int number, int tier) : base()
+            public UnitGroup(Units.UnitType type, int number, int tier) : base()
             {
-                this.type = type;
+                this.type = (int)type;
                 this.number = number;
                 this.tier = tier;
             }

@@ -8,7 +8,7 @@ namespace ProjectDaedalus
 {
     public class Entity
     {
-        public Dictionary<string, object> properties { get; }
+        public Dictionary<string, string> properties { get; }
 
         public Guid id { get; }
 
@@ -22,7 +22,7 @@ namespace ProjectDaedalus
         {
             id = Guid.NewGuid();
             remove = false;
-            properties = new Dictionary<string, object>();
+            properties = new Dictionary<string, string>();
             toSpawn = new List<Entity>();
         }
 
@@ -34,10 +34,12 @@ namespace ProjectDaedalus
             }
         }
 
-        public object this[string key]
+        public string this[string key]
         {
             get { return properties[key]; }
-            set { properties[key] = value;
+            set
+            {
+                properties[key] = value;
                 //Repo.Track(Tuple.Create(id, key, value.ToString()));
             }
         }

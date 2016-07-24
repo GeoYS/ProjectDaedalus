@@ -22,6 +22,9 @@ namespace ProjectDaedalus
             updates.Dequeue().Invoke();
         }
 
+        /*
+            Update Firebase
+        */
         public static void PerformAllUpdates()
         {
             while(updates.Any())

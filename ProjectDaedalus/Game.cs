@@ -17,11 +17,19 @@ namespace ProjectDaedalus
         public const string LOBBY = "game/lobby";
         public const string INPUT_LOBBY_REQUEST = "game/input/lobby/request";
         public const string INPUT_LOBBY_HEARTBEAT = "game/input/lobby/heartbeat";
-        public const string INPUT_LOBBY_STARTGAME= "game/input/lobby/startgame";
+        public const string INPUT_LOBBY_STARTGAME = "game/input/lobby/startgame";
+        public const string INPUT_WORLD = "game/input/world";
 
         public Lobby lobby { get; set; }
 
         public World world { get; set; }
+
+        public bool gameStarted {
+            get
+            {
+                return world != null;
+            }
+        }
 
         public void Start()
         {
@@ -35,7 +43,6 @@ namespace ProjectDaedalus
             Initialise(client);
 
             // main delta loop
-
             Stopwatch timer = new Stopwatch();
             timer.Start();
             while(true)
@@ -62,6 +69,7 @@ namespace ProjectDaedalus
 
         private void Loop(IFirebaseClient client, long delta)
         {
+            #region Lobby code
             // handle new users
             FirebaseResponse responseLobbyRequests = client.Get(INPUT_LOBBY_REQUEST);
             var lobbyRequests = JsonConvert.DeserializeObject<Dictionary<string, LobbyRequest>>(responseLobbyRequests.Body);
@@ -140,6 +148,20 @@ namespace ProjectDaedalus
                 Repo.QueueUpdate(() => client.Set<World.Map>("game/world/map", world.map));
                 client.Delete(INPUT_LOBBY_STARTGAME);
             }
+            #endregion
+
+            #region Game code
+            if (gameStarted)
+            {
+                FirebaseResponse requestsRequest = client.Get(INPUT_LOBBY_STARTGAME);
+                Dictionary<string, Request> requests = requestsRequest.ResultAs<Dictionary<string, Request>>();
+                foreach(var r in requests)
+                {
+                    world.ProcessUserRequest(r.Value);
+                    client.Delete(INPUT_WORLD + "/" + r.Key);
+                }
+            }
+            #endregion
 
             Repo.PerformAllUpdates();
         }

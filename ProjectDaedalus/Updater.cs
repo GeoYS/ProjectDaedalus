@@ -8,7 +8,7 @@ namespace ProjectDaedalus
 {
     public class Updater
     {
-        public delegate void Update(int timeElapsed, int deltaMilli, Dictionary<string, object> state, out bool finished);
+        public delegate void Update(int timeElapsed, int deltaMilli, Dictionary<string, object> state, ref bool finished);
 
         private Dictionary<string, object> state;
 
@@ -29,12 +29,12 @@ namespace ProjectDaedalus
         public void Do(int deltaMilli)
         {
             timeElapsed += deltaMilli;
-            updater.Invoke(timeElapsed, deltaMilli, state, out finished);
+            updater.Invoke(timeElapsed, deltaMilli, state, ref finished);
         }
 
-        public bool IsFinished()
+        public bool IsFinished
         {
-            return finished;
+            get { return finished; }
         }
     }
 }
